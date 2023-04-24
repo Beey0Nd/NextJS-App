@@ -1,8 +1,8 @@
 import classes from "./EventItem.module.css"
 import Button from "../ui/Button";
-import DateIcon from "../icons/date-icon"
-import AddressIcon from "../icons/address-icon"
-import ArrowRightIcon from "../icons/arrow-right-icon"
+import DateIcon from "../icons/DateIcon"
+import AddressIcon from "../icons/AddressIcon"
+import ArrowRightIcon from "../icons/ArrowRightIcon"
 
 function EventItem({title, image, date, location, id}) {
     const humanReadableDate = new Date(date).toLocaleDateString("en-US", {

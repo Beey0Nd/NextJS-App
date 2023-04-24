@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { useRouter } from "next/router";
-import getEventById from "../../fake-data";
+import { getEventById } from "../../fake-data";
 import EventSummary from "../../components/event-detail/EventSummary";
 import EventLogistics from "../../components/event-detail/EventLogistics";
 import EventContent from "../../components/event-detail/EventContent";
@@ -24,9 +24,9 @@ function EventDetailPage() {
                 image={event.image}
                 imageAll={event.title}
             />
-            <EventContent>
+            <EventContent description= {
                 <p>{event.description}</p>
-            </EventContent>
+            }/>
         </Fragment>
     );
 }

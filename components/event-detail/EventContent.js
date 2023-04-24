@@ -1,9 +1,9 @@
 import classes from './EventContent.module.css';
 
-function EventContent(props) {
+function EventContent({description}) {
   return (
     <section className={classes.content}>
-      {props.children}
+      {description}
     </section>
   );
 }
