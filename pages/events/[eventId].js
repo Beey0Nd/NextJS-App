@@ -4,6 +4,7 @@ import { getEventById } from "../../fake-data";
 import EventSummary from "../../components/event-detail/EventSummary";
 import EventLogistics from "../../components/event-detail/EventLogistics";
 import EventContent from "../../components/event-detail/EventContent";
+import ErrorAlert from "../../components/events/ErrorAlert";
 
 function EventDetailPage() {
     const router = useRouter();
@@ -12,7 +13,11 @@ function EventDetailPage() {
     const event = getEventById(eventId);
 
     if(!event) {
-        return <p>No event found!</p>
+        return (
+            <ErrorAlert>
+                <p>No event found!</p>
+            </ErrorAlert>
+        )
     }
 
     return (
@@ -24,7 +29,7 @@ function EventDetailPage() {
                 image={event.image}
                 imageAll={event.title}
             />
-            <EventContent description= {
+            <EventContent description={
                 <p>{event.description}</p>
             }/>
         </Fragment>
