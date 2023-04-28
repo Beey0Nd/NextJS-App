@@ -6,7 +6,7 @@ function Button(props) {
         return ( 
             <Link 
             href={props.link}>
-            <a className={classes.btn}>{props.children}</a>
+            <p className={classes.btn}>{props.children}</p>
             </Link>
         );
     }

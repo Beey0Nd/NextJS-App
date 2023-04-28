@@ -83,7 +83,7 @@
 
     .item img {
         width: 40%;
-        height: 14rem;
+        height: auto;
     }
 
     .content {
