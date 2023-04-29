@@ -47,7 +47,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-    // Fetching only featured events instead of all events is more appropriate despite the fact we are showing all the events, as otherwise we would fetch a huge list of events, which could cause performance issues. In case of using featured events we should set fallback value to true, to generate some pages on the fly
+    // Fetching only featured events instead of all events is more appropriate despite the fact we are showing all the events, as otherwise we would have fetched a huge list of events, which could cause performance issues. In case of using featured events we should set fallback value to true, to generate some pages on the fly instead of generating during build time.
     const allEvents = await getFeaturedEvents();
 
     const paths = allEvents.map(event => ({
