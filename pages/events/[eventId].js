@@ -1,16 +1,11 @@
 import { Fragment } from "react";
-import { useRouter } from "next/router";
-import { getEventById } from "../../fake-data";
+import { getFeaturedEvents, getEventById } from "../../utils/utils";
 import EventSummary from "../../components/event-detail/EventSummary";
 import EventLogistics from "../../components/event-detail/EventLogistics";
 import EventContent from "../../components/event-detail/EventContent";
 import ErrorAlert from "../../components/events/ErrorAlert";
 
-function EventDetailPage() {
-    const router = useRouter();
-
-    const eventId = router.query.eventId;
-    const event = getEventById(eventId);
+function EventDetailPage({event}) {
 
     if(!event) {
         return (
@@ -34,6 +29,37 @@ function EventDetailPage() {
             }/>
         </Fragment>
     );
+}
+
+export async function getStaticProps(context) {
+    console.log(context)
+    console.log(context.params);
+
+    const eventId = context.params.eventId
+    const event = await getEventById(eventId)
+
+    return {
+        props: {
+            event: event
+        },
+        revalidate: 60
+    }
+}
+
+export async function getStaticPaths() {
+    // Fetching only featured events instead of all events is more appropriate despite the fact we are showing all the events, as otherwise we would fetch a huge list of events, which could cause performance issues. In case of using featured events we should set fallback value to true, to generate some pages on the fly
+    const allEvents = await getFeaturedEvents();
+
+    const paths = allEvents.map(event => ({
+        params: {
+            eventId: event.id
+        }
+    }))
+
+    return {
+        paths,
+        fallback: true //fallback is set to true in case of featured events.
+    }
 }
 
 export default EventDetailPage;
