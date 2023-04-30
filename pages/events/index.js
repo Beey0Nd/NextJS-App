@@ -25,10 +25,8 @@ export async function getStaticProps() {
     const events = await getAllEvents()
     
     return {
-        props: {
-            events: events
-        },
-        revalidate: 1800
+        props: { events },
+        revalidate: 60
     }
 }
 

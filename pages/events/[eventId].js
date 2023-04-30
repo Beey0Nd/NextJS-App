@@ -3,15 +3,14 @@ import { getFeaturedEvents, getEventById } from "../../utils/utils";
 import EventSummary from "../../components/event-detail/EventSummary";
 import EventLogistics from "../../components/event-detail/EventLogistics";
 import EventContent from "../../components/event-detail/EventContent";
-import ErrorAlert from "../../components/events/ErrorAlert";
 
 function EventDetailPage({event}) {
 
     if(!event) {
         return (
-            <ErrorAlert>
-                <p>No event found!</p>
-            </ErrorAlert>
+            <div className="center">
+                <p>Loading...</p>
+            </div>
         )
     }
 
@@ -32,9 +31,6 @@ function EventDetailPage({event}) {
 }
 
 export async function getStaticProps(context) {
-    console.log(context)
-    console.log(context.params);
-
     const eventId = context.params.eventId
     const event = await getEventById(eventId)
 
@@ -58,7 +54,7 @@ export async function getStaticPaths() {
 
     return {
         paths,
-        fallback: true //fallback is set to true in case of featured events.
+        fallback: "blocking" //fallback is set to true in case of getFeaturedEvents, meaning there might be more pages than the ones prepared above. We can also set fallback to "blocking", meaning NextJS will show the page only when it's ready
     }
 }
 
