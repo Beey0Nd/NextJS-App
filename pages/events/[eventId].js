@@ -1,8 +1,10 @@
 import { Fragment } from "react";
 import { getFeaturedEvents, getEventById } from "../../utils/utils";
+
 import EventSummary from "../../components/event-detail/EventSummary";
 import EventLogistics from "../../components/event-detail/EventLogistics";
 import EventContent from "../../components/event-detail/EventContent";
+import Comments from "../../components/input/Comments"
 
 function EventDetailPage({event}) {
 
@@ -26,6 +28,7 @@ function EventDetailPage({event}) {
             <EventContent description={
                 <p>{event.description}</p>
             }/>
+            <Comments eventId={event.id} />
         </Fragment>
     );
 }

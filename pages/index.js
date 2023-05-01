@@ -1,11 +1,14 @@
-import EventList from "../components/events/EventList";
 import { getFeaturedEvents } from "../utils/utils";
+
+import EventList from "../components/events/EventList";
+import NewsletterRegistration from "../components/input/NewsletterRegistration"
 
 function HomePage({events}) {
 
     return (
         <div>
-            {<EventList items={events}/>}
+            <NewsletterRegistration />
+            <EventList items={events}/>
         </div>
     )
 }
