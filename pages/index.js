@@ -4,7 +4,6 @@ import EventList from "../components/events/EventList";
 import NewsletterRegistration from "../components/input/NewsletterRegistration"
 
 function HomePage({events}) {
-
     return (
         <div>
             <NewsletterRegistration />

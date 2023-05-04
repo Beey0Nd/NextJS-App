@@ -1,23 +1,31 @@
+import { useEffect, useState } from 'react';
 import classes from './CommentList.module.css';
 
-function CommentList() {
-  return (
-    <ul className={classes.comments}>
-      {/* Render list of comments - fetched from API */}
-      <li>
-        <p>My comment is amazing!</p>
-        <div>
-          By <address>Maximilian</address>
-        </div>
-      </li>
-      <li>
-        <p>My comment is amazing!</p>
-        <div>
-          By <address>Maximilian</address>
-        </div>
-      </li>
-    </ul>
-  );
+function CommentList({ eventId }) {
+    const [comments, setComments] = useState();
+    
+    useEffect(() => {
+        fetch(`/api/comments/${eventId}`)
+            .then(res => res.json())
+            .then(res => {
+                setComments(res.comments)
+            })
+    }, [])
+
+    return (
+        <ul className={classes.comments}>
+            {comments ? (comments.map(comment => {
+                return (
+                    <li key={comment._id}>
+                        <p>{comment.text}</p>
+                        <div>
+                            By <address>{comment.name}</address>
+                        </div>
+                    </li>
+                )
+            })) : null}
+        </ul>
+    );
 }
 
 export default CommentList;

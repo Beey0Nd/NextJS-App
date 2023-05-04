@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import useSWR from "swr"
+import useSWR from "swr";
 // import { getFilteredEvents } from "../../utils/utils";
 
 import EventList from "../../components/events/EventList";
