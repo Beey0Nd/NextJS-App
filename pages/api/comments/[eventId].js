@@ -15,8 +15,9 @@ async function handler(req, res) {
     }
 
     if (req.method === "GET") {
+        let documents
         try {
-            const documents = await getAllDocuments(client, "comments", { _id: -1 })
+            documents = await getAllDocuments(client, "comments", { _id: -1 })
 
         } catch (error) {
             res.status(500).json({
