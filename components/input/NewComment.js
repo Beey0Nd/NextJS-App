@@ -7,6 +7,7 @@ function NewComment(props) {
   const emailInputRef = useRef();
   const nameInputRef = useRef();
   const commentInputRef = useRef();
+  const formRef = useRef();
 
   function sendCommentHandler(event) {
     event.preventDefault();
@@ -33,14 +34,12 @@ function NewComment(props) {
       name: enteredName,
       text: enteredComment,
     });
-    
-    emailInputRef.current.value = "";
-    nameInputRef.current.value = "";
-    commentInputRef.current.value = "";
+
+    formRef.current.reset()
   }
 
   return (
-    <form onSubmit={sendCommentHandler} className={classes.form}>
+    <form ref={formRef} onSubmit={sendCommentHandler} className={classes.form}>
       <div className={classes.row}>
         <div className={classes.control}>
           <label htmlFor='email'>Your email</label>
