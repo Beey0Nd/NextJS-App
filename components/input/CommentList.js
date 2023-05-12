@@ -8,7 +8,10 @@ function CommentList({ eventId }) {
         fetch(`/api/comments/${eventId}`)
             .then(res => res.json())
             .then(res => {
-                setComments(res.comments)
+                const filteredComments = res.comments.filter(comm => {
+                    return comm.eventId === eventId
+                })
+                setComments(filteredComments)
             })
     }, [])
 
